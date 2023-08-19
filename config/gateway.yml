@@ -1,0 +1,36 @@
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka
+
+spring:
+
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+            - OPTIONS
+  
+      routes:
+        - id: movie
+          uri: lb://movie
+          predicates:
+            - Path=/movies/**
+
+
+        - id: catalog
+          uri: lb://catalog
+          predicates:
+            - Path=/catalogs/** 

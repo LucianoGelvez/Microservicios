@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ExamenParcialMicroservicios.iml" filepath="$PROJECT_DIR$/.idea/ExamenParcialMicroservicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/catalog-service/catalog-service.iml" filepath="$PROJECT_DIR$/catalog-service/catalog-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/movie-service/movie-service.iml" filepath="$PROJECT_DIR$/movie-service/movie-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/movie-service/Movie.iml" filepath="$PROJECT_DIR$/movie-service/Movie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/catalog-service/catalog.iml" filepath="$PROJECT_DIR$/catalog-service/catalog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
     </modules>
   </component>
 </project>
