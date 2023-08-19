@@ -2,18 +2,21 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="Movie" />
+        <module name="eureka-server" />
         <module name="catalog" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="catalog" target="17" />
       <module name="config-server" target="17" />
+      <module name="eureka-server" target="17" />
       <module name="Movie" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -22,6 +25,7 @@
       <module name="Movie" options="-parameters" />
       <module name="catalog" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
     </option>
   </component>
 </project>

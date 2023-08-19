@@ -8,5 +8,5 @@ spring:
     config:
       server:
         git:
-          ulr: https://github.com/AnaMariaGalarza/Configuration_primer_parcial
+          uri: https://github.com/LucianoGelvez/config-microservios
 
