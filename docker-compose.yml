@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: 'movie-dev'
+      MYSQL_USER: 'usr-movie'
+      MYSQL_PASSWORD: 'pwd-movie'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - backendnetwork
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 2s
+      timeout: 120s
+      retries: 10
+
+  configserver:
+    build: ./config-server
+    ports:
+      - "8888:8888"
+    restart: always
+    networks:
+      - backendnetwork
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://configserver:8888/application/default || exit 1"]
+      interval: 2s
+      timeout: 120s
+      retries: 10
+
+  eureka:
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - backendnetwork
+    depends_on:
+      configserver:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://eureka:8761/actuator/health"]
+      interval: 2s
+      timeout: 120s
+      retries: 10
+    environment:
+      CONFIG_HOST: configserver
+      EUREKA_HOST: eureka
+
+  movie:
+    build: ./movie-service
+    deploy:
+      mode: replicated
+      replicas: 2
+    restart: always
+    networks:
+      - backendnetwork
+    depends_on:
+      mysql:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://eureka:8761/eureka/apps/movie-service"]
+      interval: 2s
+      timeout: 120s
+      retries: 20
+    environment:
+      CONFIG_HOST: configserver
+      EUREKA_HOST: eureka
+      DB_HOST: mysql
+
+  catalog:
+    build: ./catalog-service
+    restart: always
+    networks:
+      - backendnetwork
+    depends_on:
+      mysql:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+      movie:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://eureka:8761/eureka/apps/catalog-service"]
+      interval: 2s
+      timeout: 120s
+      retries: 20
+    environment:
+      CONFIG_HOST: configserver
+      EUREKA_HOST: eureka
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "8090:8090"
+    restart: always
+    networks:
+      - backendnetwork
+    depends_on:
+      mysql:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+      movie:
+        condition: service_healthy
+      catalog:
+        condition: service_healthy
+    environment:
+      CONFIG_HOST: configserver
+      EUREKA_HOST: eureka
+      
+networks:
+  backendnetwork:
