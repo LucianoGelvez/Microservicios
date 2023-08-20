@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "movie", path = "/movies", configuration = CustomLoadBalancerConfiguration.class)
+@FeignClient(name = "movie-service", path = "/movies", configuration = CustomLoadBalancerConfiguration.class)
 public interface MoviesRepository {
 
     @GetMapping
