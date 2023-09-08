@@ -1,31 +1,53 @@
 package com.dh.catalog.service;
 
+import com.dh.catalog.exceptions.NotFoundException;
 import com.dh.catalog.models.Catalog;
-import com.dh.catalog.models.Movie;
+import com.dh.catalog.repository.CatalogRepository;
 import com.dh.catalog.repository.MoviesRepository;
+import com.dh.catalog.repository.SeriesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CatalogService implements ICatalogService {
 
-    public final MoviesRepository moviesRepository;
+    public final CatalogRepository catalogRepository;
 
     @Override
     public List<Catalog> findAll() {
-        return moviesRepository.findAllMovies(null).stream()
-                .collect(Collectors.groupingBy(Movie::getGenre))
-                .entrySet().stream()
-                .map(entry -> new Catalog(entry.getKey(), entry.getValue()))
-                .toList();
+        return catalogRepository.findAll();
     }
 
     @Override
-    public Catalog findByGenre(String genre) {
-        return new Catalog(genre, moviesRepository.findAllMovies(genre));
+    public Catalog findById(String id) {
+        return catalogRepository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Catalog with id %s not found", id)));
+    }
+
+    @Override
+    public List<Catalog> findAllByGenre(String genre) {
+        return catalogRepository.findAllByGenreIgnoreCase(genre);
+    }
+
+    @Override
+    public Catalog save(Catalog catalog) {
+        return catalogRepository.save(catalog);
+    }
+
+    @Override
+    public Catalog updateById(String id, Catalog catalog) {
+        Catalog catalogToUpdate = findById(id);
+        catalogToUpdate.setGenre(catalog.getGenre());
+        catalogToUpdate.setMovies(catalog.getMovies());
+        catalogToUpdate.setSeries(catalog.getSeries());
+        return catalogRepository.save(catalogToUpdate);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        Catalog catalogToDelete = findById(id);
+        catalogRepository.delete(catalogToDelete);
     }
 }
