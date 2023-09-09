@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "movie-service", path = "/movies", configuration = CustomLoadBalancerConfiguration.class)
+@FeignClient(name = "movies", path = "/movies", configuration = CustomLoadBalancerConfiguration.class)
 public interface MoviesRepository {
 
     @GetMapping
-    List<Movie> findAllMovies(@RequestParam(required = false) String genre);
+    List<Movie> findAllByGenre(@RequestParam(required = false) String genre);
 
 }
