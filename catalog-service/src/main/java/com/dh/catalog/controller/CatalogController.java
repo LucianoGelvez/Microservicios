@@ -20,8 +20,8 @@ public class CatalogController {
     }
 
     @GetMapping("/{genre}")
-    public ResponseEntity<Catalog> findByGenre(@PathVariable String genre) {
-        return ResponseEntity.ok(catalogoService.findByGenre(genre));
+    public ResponseEntity<List<Catalog>> findByGenre(@PathVariable String genre) {
+        return ResponseEntity.ok(catalogoService.findAllByGenre(genre));
     }
     
 }
