@@ -52,7 +52,8 @@ La documentación de la API se encuentra en el siguiente link: [Documentación A
 
 ### Trazabilidad (Tracing) con Zipkin
 
-![Zipkin](https://i.ibb.co/F6xf6g8/Sin-t-tulo.jpg)
+![Zipkin](https://i.ibb.co/qm26wtB/image.png)
+![Zipkin 2](https://i.ibb.co/Fs8ytRB/image.png)
 
 ### Eureka Server (Dashboard)
 
@@ -74,6 +75,10 @@ La documentación de la API se encuentra en el siguiente link: [Documentación A
 
 ![Guardar Película Comedia](https://i.ibb.co/YT8Dnxg/image.png) 
 ![Guardar Película 2](https://i.ibb.co/C5d9ZQ4/image.png) 
+
+### Listado de Series
+
+![Listado de Series](https://i.ibb.co/1mhbj0y/image.png)
 
 ### Listado de Catálogos
 
