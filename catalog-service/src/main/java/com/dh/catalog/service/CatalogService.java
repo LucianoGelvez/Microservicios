@@ -31,6 +31,7 @@ public class CatalogService implements ICatalogService {
         return catalogRepository.findAllByGenreIgnoreCase(genre);
     }
 
+
     @Override
     public Catalog save(Catalog catalog) {
         return catalogRepository.save(catalog);
