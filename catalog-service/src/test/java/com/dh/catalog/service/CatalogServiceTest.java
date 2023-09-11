@@ -38,7 +38,7 @@ class CatalogServiceTest {
                 new Movie("Todo Poderoso", "Comedia", "https://chiqui.co/todopoderoso")
         );
 
-        when(moviesRepository.findAllMovies(any())).thenReturn(movies);
+        when(moviesRepository.findAllByGenre(any())).thenReturn(movies);
 
         List<Catalog> peliculasAnimacion = catalogoService.findAll();
 

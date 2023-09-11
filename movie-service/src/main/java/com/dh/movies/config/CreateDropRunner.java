@@ -1,8 +1,8 @@
-package com.dh.serie.config;
+package com.dh.movies.config;
 
-import com.dh.serie.entity.Serie;
-import com.dh.serie.repository.SerieRepository;
-import com.dh.serie.service.ISerieService;
+import com.dh.movies.dto.MovieRequest;
+import com.dh.movies.repository.IMovieRepository;
+import com.dh.movies.service.IMovieService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -17,23 +17,23 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CreateDropRunner {
 
-    private final SerieRepository serieRepository;
-    private final ISerieService serieService;
+    private final IMovieRepository movieRepository;
+    private final IMovieService movieService;
 
     @PostConstruct
     public void init() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         Resource resource = new ClassPathResource("import.json");
-        Serie[] series = objectMapper.readValue(resource.getInputStream(), Serie[].class);
+        MovieRequest[] movies = objectMapper.readValue(resource.getInputStream(), MovieRequest[].class);
 
-        for (Serie serie : series) {
-            serieService.save(serie);
+        for (MovieRequest movie : movies) {
+            movieService.save(movie);
         }
 
     }
 
     @PreDestroy
     public void shutdown() {
-        serieRepository.deleteAll();
+        movieRepository.deleteAll();
     }
 }
