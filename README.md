@@ -44,15 +44,20 @@ La documentación de la API se encuentra en el siguiente link: [Documentación A
 
 ### Ejecución de Docker Compose
 
-![Docker Compose](https://i.ibb.co/vxFyQLp/image.png)
+![Docker Compose](https://i.ibb.co/kgf68Y9/Sin-t-tulo.jpg)
 
 ### Dashboard de Docker Desktop
 
-![Docker Desktop](https://i.ibb.co/dmNCnRR/image.png)
+![Docker Desktop](https://i.ibb.co/LCyLQ2G/image.png)
+
+### Trazabilidad (Tracing) con Zipkin
+
+![Zipkin](https://i.ibb.co/qm26wtB/image.png)
+![Zipkin 2](https://i.ibb.co/Fs8ytRB/image.png)
 
 ### Eureka Server (Dashboard)
 
-![Eureka Server](https://i.ibb.co/RzdpPhq/image.png)
+![Eureka Server](https://i.ibb.co/42Xpkrm/image.png)
 
 ### Endpoint de Config Server
 
@@ -71,9 +76,13 @@ La documentación de la API se encuentra en el siguiente link: [Documentación A
 ![Guardar Película Comedia](https://i.ibb.co/YT8Dnxg/image.png) 
 ![Guardar Película 2](https://i.ibb.co/C5d9ZQ4/image.png) 
 
+### Listado de Series
+
+![Listado de Series](https://i.ibb.co/1mhbj0y/image.png)
+
 ### Listado de Catálogos
 
-![Listado de Catálogos](https://i.ibb.co/DQzXwcW/image.png)
+![Listado de Catálogos](https://i.ibb.co/1fbyKYz/image.png)
 
 ### Catalogo por Género
 
@@ -83,6 +92,10 @@ La documentación de la API se encuentra en el siguiente link: [Documentación A
 ### Visualización de tabla en MySQL
 
 ![Visualización de tabla en MySQL](https://i.ibb.co/c2sFf9b/image.png)
+
+### Visualización de registros en MongoDB
+
+![Visualización de registros en MongoDB](https://i.ibb.co/SXjqyVq/image.png)
 
 # Autores ✒️
 
