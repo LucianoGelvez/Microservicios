@@ -7,6 +7,8 @@ import com.dh.catalog.repository.MoviesRepository;
 import com.dh.catalog.repository.SeriesRepository;
 import com.dh.catalog.service.ICatalogService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -37,6 +39,14 @@ public class MessageListener {
         processMovieMessage(movie.getPayload());
     }
 
+    //Supongamos que desde desde una plataforma se estan haciendo muchas solicitudes a los servicios de peliculas o series.
+    //Estos servicios pueden experimentar fallas ocasionales o volverse inaccesibles debido a problemas de sobrecarga.
+    // Sin embargo, queremos garantizar que la aplicación siga siendo funcional incluso si uno de los servicios falla.
+    //El circuit breaker monitoreará las llamadas a los servicios y abrirá el circuito si se supera un umbral de fallas.
+    // Cuando el circuito está abierto, las llamadas subsiguientes al servicio fallido se redirigirán a un flujo de ejecución alternativo,
+    // como un método de fallback, que proporcionará una respuesta alternativa.
+    @CircuitBreaker(name = "catalog-post", fallbackMethod = "fallbackProcessMessage")
+    @Retry(name = "catalog-post")
     private void processSerieMessage(String seriePayload) {
         try {
             log.info("[RECEIVE MESSAGE] SERIE -> {}", seriePayload);
@@ -49,7 +59,8 @@ public class MessageListener {
             log.error("[ERROR] {}", e.getMessage());
         }
     }
-
+    @CircuitBreaker(name = "catalog-post", fallbackMethod = "fallbackProcessMessage")
+    @Retry(name = "catalog-post")
     private void processMovieMessage(String moviePayload) {
         try {
             log.info("[RECEIVE MESSAGE] MOVIE -> {}", moviePayload);
@@ -61,6 +72,10 @@ public class MessageListener {
         } catch (Exception e) {
             log.error("[ERROR] {}", e.getMessage());
         }
+    }
+    private void fallbackProcessMessage(String payload, Exception e) {
+        log.error("[ERROR] Fallback method called for payload: {}", payload);
+
     }
 
     private void updateCatalogWithSerie(Serie serie, List<Movie> movies, List<Serie> series) {
