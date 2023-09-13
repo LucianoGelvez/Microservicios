@@ -1,8 +1,8 @@
-version: '3.8'
+version: '3.9'
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql
     environment:
       MYSQL_DATABASE: 'movie-dev'
       MYSQL_USER: 'usr-movie'
@@ -13,13 +13,62 @@ services:
     restart: always
     networks:
       - backendnetwork
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 2s
       timeout: 120s
       retries: 10
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      - backendnetwork
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: dhbackend
+      MONGO_INITDB_DATABASE: admin
+    volumes:
+      - ./configurations/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    healthcheck:
+      test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: always
+    volumes:
+      - ./configurations/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./configurations/definitions.json:/etc/rabbitmq/definitions.json:ro
+    networks:
+      - backendnetwork
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    restart: always
+    environment:
+      - RABBIT_ADDRESSES=rabbitmq:5672
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - backendnetwork
 
   configserver:
     build: ./config-server
@@ -55,9 +104,6 @@ services:
 
   movie:
     build: ./movie-service
-    deploy:
-      mode: replicated
-      replicas: 2
     restart: always
     networks:
       - backendnetwork
@@ -68,15 +114,47 @@ services:
         condition: service_healthy
       eureka:
         condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://eureka:8761/eureka/apps/movie-service"]
       interval: 2s
       timeout: 120s
-      retries: 20
+      retries: 30
+    environment:
+      CONFIG_HOST: configserver
+      RABIT_HOST: rabbitmq
+      ZIPKIN_HOST: zipkin
+      EUREKA_HOST: eureka
+      DB_HOST: mysql
+
+  serie:
+    build: ./serie-service
+    restart: always
+    networks:
+      - backendnetwork
+    depends_on:
+      configserver:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      movie:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://eureka:8761/eureka/apps/serie-service"]
+      interval: 2s
+      timeout: 120s
+      retries: 40
     environment:
       CONFIG_HOST: configserver
       EUREKA_HOST: eureka
-      DB_HOST: mysql
+      RABIT_HOST: rabbitmq
+      ZIPKIN_HOST: zipkin
+      MONGO_HOST: mongo
 
   catalog:
     build: ./catalog-service
@@ -84,13 +162,17 @@ services:
     networks:
       - backendnetwork
     depends_on:
-      mysql:
-        condition: service_healthy
       configserver:
         condition: service_healthy
       eureka:
         condition: service_healthy
       movie:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      serie:
+        condition: service_healthy
+      mongo:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://eureka:8761/eureka/apps/catalog-service"]
@@ -100,6 +182,9 @@ services:
     environment:
       CONFIG_HOST: configserver
       EUREKA_HOST: eureka
+      RABIT_HOST: rabbitmq
+      ZIPKIN_HOST: zipkin
+      MONGO_HOST: mongo
 
   gateway:
     build: ./gateway
@@ -110,6 +195,10 @@ services:
       - backendnetwork
     depends_on:
       mysql:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      rabbitmq:
         condition: service_healthy
       configserver:
         condition: service_healthy
@@ -122,6 +211,8 @@ services:
     environment:
       CONFIG_HOST: configserver
       EUREKA_HOST: eureka
+      RABIT_HOST: rabbitmq
+      ZIPKIN_HOST: zipkin
       
 networks:
   backendnetwork:

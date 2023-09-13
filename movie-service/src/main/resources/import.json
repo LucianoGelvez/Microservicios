@@ -1,0 +1,27 @@
+[
+  {
+    "name": "El señor de los anillos",
+    "genre": "Fantasia",
+    "urlStream": "https://www.youtube.com/watch?v=V75dMMIW2B4"
+  },
+  {
+    "name": "Harry Potter",
+    "genre": "Fantasia",
+    "urlStream": "https://www.youtube.com/watch?v=V75dMMIW2B4"
+  },
+  {
+    "name": "Star Wars",
+    "genre": "Ciencia Ficcion",
+    "urlStream": "https://www.youtube.com/watch?v=V75dMMIW2B4"
+  },
+  {
+    "name": "El señor de los anillos 2",
+    "genre": "Fantasia",
+    "urlStream": "https://www.youtube.com/watch?v=V75dMMIW2B4"
+  },
+  {
+    "name": "Todo poderoso",
+    "genre": "Comedia",
+    "urlStream": "https://www.youtube.com/watch?v=V75dMMIW2B4"
+  }
+]

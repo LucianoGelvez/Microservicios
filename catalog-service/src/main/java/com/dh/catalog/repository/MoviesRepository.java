@@ -12,6 +12,6 @@ import java.util.List;
 public interface MoviesRepository {
 
     @GetMapping
-    List<Movie> findAllMovies(@RequestParam(required = false) String genre);
+    List<Movie> findAllByGenre(@RequestParam(required = false) String genre);
 
 }
