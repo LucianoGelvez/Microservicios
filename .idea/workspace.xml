@@ -5,35 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8af80b45-9f4b-4006-959c-bad3fa02e860" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_rabbitmq_amqp_client_5_17_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_4_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_record_codec_4_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_4_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_sync_4_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_amqp_3_0_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_rabbit_3_0_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_rabbit_junit_3_0_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_rabbit_test_3_0_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_amqp_3_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_3_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_cloud_spring_cloud_starter_sleuth_unknown.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_4_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_retry_spring_retry_2_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_6_0_11.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/controller/CatalogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/controller/CatalogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/message/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/message/MessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/repository/MoviesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/repository/MoviesRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/service/CatalogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/service/CatalogService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/service/ICatalogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/src/main/java/com/dh/catalog/service/ICatalogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +24,16 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2VISbBHanQR4Xj5Er2Cw7pbqDYf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -65,6 +50,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "a05d6b1fb62e64feb0fb2f07d30050b1",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,14 +61,13 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
+  <component name="RunManager" selected="Maven.catalog [clean]">
     <configuration name="Movie [clean]" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -96,9 +81,6 @@
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/movie-service" />
@@ -118,7 +100,6 @@
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -132,9 +113,6 @@
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/movie-service" />
@@ -154,7 +132,6 @@
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -168,9 +145,6 @@
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/serie-service" />
@@ -190,7 +164,6 @@
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -204,9 +177,6 @@
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/serie-service" />
@@ -226,7 +196,6 @@
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -239,9 +208,6 @@
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/serie-service" />
@@ -256,7 +222,6 @@
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -271,9 +236,6 @@
             <option name="profilesMap">
               <map />
             </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/serie-service" />
           </MavenRunnerParameters>
@@ -287,7 +249,6 @@
         <option name="myRunnerSettings" />
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
-            <option name="cmdOptions" />
             <option name="profiles">
               <set />
             </option>
@@ -302,9 +263,6 @@
             <option name="profilesMap">
               <map />
             </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/catalog-service" />
           </MavenRunnerParameters>
@@ -316,6 +274,20 @@
         <option name="useCurrentConnection" value="false" />
       </extension>
       <method v="2" />
+    </configuration>
+    <configuration name="CatalogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="catalog (2)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dh.catalog.CatalogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatalogApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="catalog (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dh.catalog.CatalogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="CatalogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="catalog" />
@@ -367,6 +339,8 @@
       <item itemvalue="Maven.Movie [clean,package,install]" />
       <item itemvalue="Maven.Serie [clean,package,install]" />
       <item itemvalue="Maven.Serie [clean,package] (1)" />
+      <item itemvalue="Spring Boot.CatalogApplication (1)" />
+      <item itemvalue="Spring Boot.CatalogApplication (2)" />
       <item itemvalue="Spring Boot.CatalogApplication" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
@@ -391,10 +365,22 @@
       <option name="presentableId" value="Default" />
       <updated>1694522170026</updated>
       <workItem from="1694522172532" duration="19565000" />
+      <workItem from="1694562774483" duration="499000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

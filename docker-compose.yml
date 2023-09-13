@@ -104,9 +104,6 @@ services:
 
   movie:
     build: ./movie-service
-    deploy:
-      mode: replicated
-      replicas: 2
     restart: always
     networks:
       - backendnetwork

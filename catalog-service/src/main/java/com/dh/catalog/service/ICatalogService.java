@@ -13,6 +13,4 @@ public interface ICatalogService {
     Catalog save(Catalog catalog);
     Catalog updateById(String id, Catalog catalog);
     void deleteById(String id);
-    Movie saveMovi(Movie movie);
-    Serie saveSerie(Serie serie);
 }

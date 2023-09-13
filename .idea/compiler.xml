@@ -6,20 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="config-server" />
-        <module name="Movie" />
-        <module name="eureka-server" />
         <module name="Serie" />
-        <module name="gateway" />
-        <module name="catalog" />
+        <module name="catalog (1)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="catalog (2)" target="17" />
+      <module name="gateway" target="17" />
+      <module name="Movie" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Movie" options="-parameters" />
       <module name="Serie" options="-parameters" />
       <module name="catalog" options="-parameters" />
+      <module name="catalog (1)" options="-parameters" />
+      <module name="catalog (2)" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway" options="-parameters" />

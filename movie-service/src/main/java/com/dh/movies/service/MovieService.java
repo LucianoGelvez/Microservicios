@@ -3,6 +3,7 @@ package com.dh.movies.service;
 import com.dh.movies.dto.MovieRequest;
 import com.dh.movies.dto.MovieResponse;
 import com.dh.movies.entity.Movie;
+import com.dh.movies.message.MessageSender;
 import com.dh.movies.repository.IMovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MovieService implements IMovieService {
     private final IMovieRepository movieRepository;
+    private final MessageSender messageSender;
 
     @Override
     public List<MovieResponse> findAll(String genre) {
@@ -32,7 +34,10 @@ public class MovieService implements IMovieService {
         movieSave.setName(movie.getName());
         movieSave.setGenre(movie.getGenre());
         movieSave.setUrlStream(movie.getUrlStream());
-        return new MovieResponse(movieRepository.save(movieSave));
+
+        Movie movieSaved = movieRepository.save(movieSave);
+        messageSender.send(movieSaved);
+        return new MovieResponse(movieSaved);
     }
 
     @Override
@@ -45,7 +50,10 @@ public class MovieService implements IMovieService {
             movieUpdate.setGenre(movie.getGenre());
         if (movie.getUrlStream() != null)
             movieUpdate.setUrlStream(movie.getUrlStream());
-        return new MovieResponse(movieRepository.save(movieUpdate));
+
+        Movie movieUpdated = movieRepository.save(movieUpdate);
+        messageSender.send(movieUpdated);
+        return new MovieResponse(movieUpdated);
     }
 
     @Override

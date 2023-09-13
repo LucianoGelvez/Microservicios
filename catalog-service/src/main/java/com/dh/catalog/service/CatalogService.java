@@ -55,17 +55,4 @@ public class CatalogService implements ICatalogService {
         catalogRepository.delete(catalogToDelete);
     }
 
-    @Override
-    public Movie saveMovi(Movie movie) {
-        return null;
-    }
-
-    @Override
-    public Serie saveSerie(Serie serie) {
-        return null;
-    }
-
-//    private Movie createMovieFallback(CallNotPermittedException exception){
-//        return exception
-//    }
 }

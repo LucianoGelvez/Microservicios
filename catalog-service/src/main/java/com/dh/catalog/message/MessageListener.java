@@ -39,12 +39,6 @@ public class MessageListener {
         processMovieMessage(movie.getPayload());
     }
 
-    //Supongamos que desde desde una plataforma se estan haciendo muchas solicitudes a los servicios de peliculas o series.
-    //Estos servicios pueden experimentar fallas ocasionales o volverse inaccesibles debido a problemas de sobrecarga.
-    // Sin embargo, queremos garantizar que la aplicación siga siendo funcional incluso si uno de los servicios falla.
-    //El circuit breaker monitoreará las llamadas a los servicios y abrirá el circuito si se supera un umbral de fallas.
-    // Cuando el circuito está abierto, las llamadas subsiguientes al servicio fallido se redirigirán a un flujo de ejecución alternativo,
-    // como un método de fallback, que proporcionará una respuesta alternativa.
     @CircuitBreaker(name = "catalog-post", fallbackMethod = "fallbackProcessMessage")
     @Retry(name = "catalog-post")
     private void processSerieMessage(String seriePayload) {
@@ -75,7 +69,6 @@ public class MessageListener {
     }
     private void fallbackProcessMessage(String payload, Exception e) {
         log.error("[ERROR] Fallback method called for payload: {}", payload);
-
     }
 
     private void updateCatalogWithSerie(Serie serie, List<Movie> movies, List<Serie> series) {
