@@ -7,6 +7,8 @@ import com.dh.catalog.repository.MoviesRepository;
 import com.dh.catalog.repository.SeriesRepository;
 import com.dh.catalog.service.ICatalogService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -37,6 +39,8 @@ public class MessageListener {
         processMovieMessage(movie.getPayload());
     }
 
+    @CircuitBreaker(name = "catalog-post", fallbackMethod = "fallbackProcessMessage")
+    @Retry(name = "catalog-post")
     private void processSerieMessage(String seriePayload) {
         try {
             log.info("[RECEIVE MESSAGE] SERIE -> {}", seriePayload);
@@ -49,7 +53,8 @@ public class MessageListener {
             log.error("[ERROR] {}", e.getMessage());
         }
     }
-
+    @CircuitBreaker(name = "catalog-post", fallbackMethod = "fallbackProcessMessage")
+    @Retry(name = "catalog-post")
     private void processMovieMessage(String moviePayload) {
         try {
             log.info("[RECEIVE MESSAGE] MOVIE -> {}", moviePayload);
@@ -61,6 +66,9 @@ public class MessageListener {
         } catch (Exception e) {
             log.error("[ERROR] {}", e.getMessage());
         }
+    }
+    private void fallbackProcessMessage(String payload, Exception e) {
+        log.error("[ERROR] Fallback method called for payload: {}", payload);
     }
 
     private void updateCatalogWithSerie(Serie serie, List<Movie> movies, List<Serie> series) {

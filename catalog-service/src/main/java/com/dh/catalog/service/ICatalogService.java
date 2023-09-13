@@ -1,6 +1,8 @@
 package com.dh.catalog.service;
 
 import com.dh.catalog.models.Catalog;
+import com.dh.catalog.models.Movie;
+import com.dh.catalog.models.Serie;
 
 import java.util.List;
 

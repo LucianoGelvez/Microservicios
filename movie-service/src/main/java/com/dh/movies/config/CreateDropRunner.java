@@ -29,7 +29,6 @@ public class CreateDropRunner {
         for (MovieRequest movie : movies) {
             movieService.save(movie);
         }
-
     }
 
     @PreDestroy

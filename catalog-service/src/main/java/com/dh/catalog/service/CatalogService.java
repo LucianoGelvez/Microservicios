@@ -2,9 +2,12 @@ package com.dh.catalog.service;
 
 import com.dh.catalog.exceptions.NotFoundException;
 import com.dh.catalog.models.Catalog;
+import com.dh.catalog.models.Movie;
+import com.dh.catalog.models.Serie;
 import com.dh.catalog.repository.CatalogRepository;
 import com.dh.catalog.repository.MoviesRepository;
 import com.dh.catalog.repository.SeriesRepository;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +34,7 @@ public class CatalogService implements ICatalogService {
         return catalogRepository.findAllByGenreIgnoreCase(genre);
     }
 
+
     @Override
     public Catalog save(Catalog catalog) {
         return catalogRepository.save(catalog);
@@ -50,4 +54,5 @@ public class CatalogService implements ICatalogService {
         Catalog catalogToDelete = findById(id);
         catalogRepository.delete(catalogToDelete);
     }
+
 }
